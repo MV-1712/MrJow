@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mr Jow</title>
 
-    <!-- Fuentes -->
+    <!-- Fuente -->
     <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
 
     <style>
@@ -19,7 +19,6 @@
             justify-content: center;
         }
 
-        /* CONTENEDOR CENTRAL */
         .container {
             width: 100%;
             max-width: 480px;
@@ -34,6 +33,19 @@
             font-weight: 700;
             margin-top: 20px;
             letter-spacing: 1px;
+            opacity: 0;
+            animation: entradaSuave 0.6s ease forwards;
+        }
+
+        @keyframes entradaSuave {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         img {
@@ -48,6 +60,19 @@
             margin-top: 8px;
             opacity: 0.85;
             letter-spacing: 0.5px;
+        }
+
+        .flecha {
+            font-size: 18px;
+            margin-top: 4px;
+            animation: pulso 1.4s infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes pulso {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+            100% { transform: translateY(0); }
         }
 
         .social-buttons {
@@ -73,18 +98,6 @@
         .youtube { background-color: #FF0000; }
         .kick { background-color: #25D366; }
         .correo { background-color: #6E6E6E; }
-
-        .stickers-button {
-            display: inline-block;
-            margin: 40px 0;
-            padding: 14px 36px;
-            background-color: #cc0000;
-            border-radius: 40px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-        }
 
         @keyframes rebote {
             0% { transform: translateY(0); }
@@ -114,9 +127,11 @@
         alt="Logo Mr Jow"
     >
 
-    <div class="texto-click">
-        CLICK EN LA FOTO PARA VER EL ÚLTIMO LANZAMIENTO
-    </div>
+    <div class="flecha">⬆️</div>
+
+<div class="texto-click">
+    CLICK EN LA FOTO PARA VER EL ÚLTIMO LANZAMIENTO
+</div>
 
     <div class="social-buttons">
         <a href="https://www.instagram.com/wilsoncarranza89" target="_blank" class="instagram">Instagram</a>
@@ -126,8 +141,6 @@
         <a href="https://kick.com/mrjow" target="_blank" class="kick">Kick</a>
         <a href="mailto:wilsoncarranza89@gmail.com" class="correo">Correo</a>
     </div>
-
-    <a href="#" class="stickers-button">Stickers</a>
 
     <audio id="bienvenida">
         <source src="bienvenida.mp3" type="audio/mpeg">
