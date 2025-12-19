@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mr Jow</title>
 
-    <!-- Fuente Lobster (si luego la quieres usar en otra cosa) -->
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <!-- Fuentes -->
     <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
 
     <style>
@@ -14,29 +14,37 @@
             padding: 0;
             font-family: Arial, Helvetica, sans-serif;
             color: white;
-            text-align: center;
             background-color: #ff0000d4;
+            display: flex;
+            justify-content: center;
         }
 
-        /* TEXTO PRINCIPAL ARRIBA */
-       .dimelo {
-    font-family: 'Lobster Two', cursive;
-    font-size: 56px;
-    font-weight: 700;
-    margin-top: 35px;
-    letter-spacing: 1px;
-}
+        /* CONTENEDOR CENTRAL */
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* TEXTO PRINCIPAL */
+        .dimelo {
+            font-family: 'Lobster Two', cursive;
+            font-size: clamp(28px, 6vw, 56px);
+            font-weight: 700;
+            margin-top: 20px;
+            letter-spacing: 1px;
+        }
 
         img {
-            width: 250px;
+            width: clamp(180px, 60vw, 250px);
             border-radius: 15px;
             margin-top: 25px;
             cursor: pointer;
         }
 
-        /* TEXTO DEBAJO DE LA FOTO */
         .texto-click {
-            font-size: 14px;
+            font-size: clamp(12px, 3.5vw, 14px);
             margin-top: 8px;
             opacity: 0.85;
             letter-spacing: 0.5px;
@@ -46,16 +54,17 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 12px;
             margin-top: 30px;
         }
 
         .social-buttons a {
-            padding: 12px 25px;
+            padding: 12px 22px;
             border-radius: 30px;
             font-weight: bold;
             color: white;
             text-decoration: none;
+            font-size: 14px;
         }
 
         .instagram { background-color: #C13584; }
@@ -68,10 +77,10 @@
         .stickers-button {
             display: inline-block;
             margin: 40px 0;
-            padding: 15px 40px;
+            padding: 14px 36px;
             background-color: #cc0000;
             border-radius: 40px;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             color: white;
             text-decoration: none;
@@ -88,36 +97,27 @@
         .rebotar {
             animation: rebote 0.6s ease;
         }
-
-        /* RESPONSIVE */
-        @media (max-width: 600px) {
-            .dimelo { font-size: 28px; }
-            img { width: 200px; }
-            .texto-click { font-size: 12px; }
-        }
     </style>
 </head>
 
 <body>
 
-    <!-- TEXTO PRINCIPAL -->
+<div class="container">
+
     <div class="dimelo">
         Di Di Di DIMELOOO
     </div>
 
-    <!-- IMAGEN -->
     <img
         id="logo"
         src="Logo_Mr_Jow__JPG__Imagen_-removebg-preview.png"
         alt="Logo Mr Jow"
     >
 
-    <!-- TEXTO DEBAJO DE LA IMAGEN -->
     <div class="texto-click">
         CLICK EN LA FOTO PARA VER EL ÚLTIMO LANZAMIENTO
     </div>
 
-    <!-- REDES -->
     <div class="social-buttons">
         <a href="https://www.instagram.com/wilsoncarranza89" target="_blank" class="instagram">Instagram</a>
         <a href="https://www.tiktok.com/@mrjow89" target="_blank" class="tiktok">TikTok</a>
@@ -129,41 +129,38 @@
 
     <a href="#" class="stickers-button">Stickers</a>
 
-    <!-- AUDIO -->
     <audio id="bienvenida">
         <source src="bienvenida.mp3" type="audio/mpeg">
     </audio>
 
-    <script>
-        const logo = document.getElementById("logo");
-        const audio = document.getElementById("bienvenida");
-        const videoActual = "https://www.youtube.com/watch?v=s7fB92foy70";
+</div>
 
-        // Rebote constante
-        setInterval(() => {
-            logo.classList.add("rebotar");
-            setTimeout(() => logo.classList.remove("rebotar"), 600);
-        }, 2000);
+<script>
+    const logo = document.getElementById("logo");
+    const audio = document.getElementById("bienvenida");
+    const videoActual = "https://www.youtube.com/watch?v=s7fB92foy70";
 
-        // Intento de audio automático
-        window.addEventListener("load", () => {
-            audio.play().catch(() => {});
-        });
+    setInterval(() => {
+        logo.classList.add("rebotar");
+        setTimeout(() => logo.classList.remove("rebotar"), 600);
+    }, 2000);
 
-        // Garantizar audio al primer toque
-        document.addEventListener("click", () => {
-            if (audio.paused) audio.play();
-        }, { once: true });
+    window.addEventListener("load", () => {
+        audio.play().catch(() => {});
+    });
 
-        // Click en la imagen
-        logo.addEventListener("click", () => {
-            audio.currentTime = 0;
-            audio.play();
-            setTimeout(() => {
-                window.open(videoActual, "_blank");
-            }, 300);
-        });
-    </script>
+    document.addEventListener("click", () => {
+        if (audio.paused) audio.play();
+    }, { once: true });
+
+    logo.addEventListener("click", () => {
+        audio.currentTime = 0;
+        audio.play();
+        setTimeout(() => {
+            window.open(videoActual, "_blank");
+        }, 300);
+    });
+</script>
 
 </body>
 </html>
