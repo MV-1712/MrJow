@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mr Jow</title>
+
+    <!-- Fuente Lobster -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            background-color: #ff0000d4;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            font-family: 'Lobster', cursive;
+            font-size: 80px;
+            margin-top: 50px;
+        }
+
+        img {
+            width: 250px;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .social-buttons a {
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+            color: white;
+        }
+
+        .instagram { background-color: #C13584; }
+        .tiktok { background-color: #000000; }
+        .facebook { background-color: #1877F2; }
+        .youtube { background-color: #FF0000; }
+        .kick { background-color: #25D366; }
+        .correo { background-color: #6E6E6E; }
+
+        .social-buttons a:hover {
+            filter: brightness(1.2);
+        }
+
+        .stickers-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 40px;
+            background-color: #cc0000;
+            border-radius: 40px;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .stickers-button:hover {
+            background-color: #ff3333;
+        }
+
+        @keyframes rebote {
+            0% { transform: translateY(0); }
+            20% { transform: translateY(-20px); }
+            40% { transform: translateY(0); }
+            60% { transform: translateY(-10px); }
+            80% { transform: translateY(0); }
+            100% { transform: translateY(0); }
+        }
+
+        .rebotar {
+            animation: rebote 0.6s ease;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 55px; }
+            img { width: 200px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Mr Jow</h1>
+
+    <img 
+        id="logo"
+        src="Logo_Mr_Jow__JPG__Imagen_-removebg-preview.png"
+        alt="Logo Mr Jow"
+    >
+
+    <div class="social-buttons">
+        <a href="https://www.instagram.com/wilsoncarranza89" target="_blank" class="instagram">Instagram</a>
+        <a href="https://www.tiktok.com/@mrjow89" target="_blank" class="tiktok">TikTok</a>
+        <a href="https://www.facebook.com/mrjow56oficial?locale=es_LA" target="_blank" class="facebook">Facebook</a>
+        <a href="https://www.youtube.com/@mrjow89" target="_blank" class="youtube">YouTube</a>
+        <a href="https://kick.com/mrjow" target="_blank" class="kick">Kick</a>
+        <a href="mailto:wilsoncarranza89@gmail.com" class="correo">Correo</a>
+    </div>
+
+    <a href="#" class="stickers-button">Stickers</a>
+
+    <!-- AUDIO -->
+    <audio id="bienvenida">
+        <source src="bienvenida.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const logo = document.getElementById("logo");
+        const audio = document.getElementById("bienvenida");
+
+        const videoActual = "https://www.youtube.com/watch?v=s7fB92foy70";
+
+        // Rebote cada 2 segundos
+        setInterval(() => {
+            logo.classList.add("rebotar");
+            setTimeout(() => logo.classList.remove("rebotar"), 600);
+        }, 2000);
+
+        // Intento de bienvenida automática
+        window.addEventListener("load", () => {
+            audio.play().catch(() => {
+                console.log("Autoplay bloqueado, se activará al primer toque");
+            });
+        });
+
+        // Primer click en cualquier parte → audio garantizado
+        document.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true });
+
+        // Click en imagen: audio + abrir video
+        logo.addEventListener("click", () => {
+            audio.currentTime = 0;
+            audio.play();
+            setTimeout(() => {
+                window.open(videoActual, "_blank");
+            }, 300);
+        });
+    </script>
+
+</body>
+</html>
