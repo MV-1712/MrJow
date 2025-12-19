@@ -2,119 +2,126 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mr Jow</title>
 
-    <!-- Fuente Lobster -->
+    <!-- Fuente Lobster (si luego la quieres usar en otra cosa) -->
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
         body {
             margin: 0;
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
             color: white;
             text-align: center;
             background-color: #ff0000d4;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
         }
 
-        h1 {
-            font-family: 'Lobster', cursive;
-            font-size: clamp(48px, 8vw, 80px);
-            margin: 30px 0 10px;
-        }
+        /* TEXTO PRINCIPAL ARRIBA */
+       .dimelo {
+    font-family: 'Lobster Two', cursive;
+    font-size: 56px;
+    font-weight: 700;
+    margin-top: 35px;
+    letter-spacing: 1px;
+}
 
         img {
-            width: clamp(180px, 40vw, 260px);
-            height: auto;
+            width: 250px;
             border-radius: 15px;
-            margin: 20px 0;
+            margin-top: 25px;
             cursor: pointer;
         }
 
+        /* TEXTO DEBAJO DE LA FOTO */
+        .texto-click {
+            font-size: 14px;
+            margin-top: 8px;
+            opacity: 0.85;
+            letter-spacing: 0.5px;
+        }
+
         .social-buttons {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
             gap: 15px;
-            width: 100%;
-            max-width: 600px;
-            margin-top: 25px;
+            margin-top: 30px;
         }
 
         .social-buttons a {
-            text-decoration: none;
-            padding: 14px 10px;
+            padding: 12px 25px;
             border-radius: 30px;
             font-weight: bold;
-            transition: 0.3s;
             color: white;
-            font-size: clamp(14px, 3.5vw, 16px);
+            text-decoration: none;
         }
 
         .instagram { background-color: #C13584; }
-        .tiktok { background-color: #000000; }
+        .tiktok { background-color: #000; }
         .facebook { background-color: #1877F2; }
         .youtube { background-color: #FF0000; }
         .kick { background-color: #25D366; }
         .correo { background-color: #6E6E6E; }
 
-        .social-buttons a:hover {
-            filter: brightness(1.2);
-        }
-
         .stickers-button {
-            margin: 40px 0 20px;
+            display: inline-block;
+            margin: 40px 0;
             padding: 15px 40px;
             background-color: #cc0000;
             border-radius: 40px;
-            font-size: clamp(16px, 4vw, 20px);
+            font-size: 20px;
             font-weight: bold;
-            text-decoration: none;
             color: white;
-            transition: 0.3s;
-        }
-
-        .stickers-button:hover {
-            background-color: #ff3333;
+            text-decoration: none;
         }
 
         @keyframes rebote {
             0% { transform: translateY(0); }
-            20% { transform: translateY(-20px); }
+            20% { transform: translateY(-15px); }
             40% { transform: translateY(0); }
-            60% { transform: translateY(-10px); }
-            80% { transform: translateY(0); }
+            60% { transform: translateY(-8px); }
             100% { transform: translateY(0); }
         }
 
         .rebotar {
             animation: rebote 0.6s ease;
         }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .dimelo { font-size: 28px; }
+            img { width: 200px; }
+            .texto-click { font-size: 12px; }
+        }
     </style>
 </head>
 
 <body>
 
-    <h1>Mr Jow</h1>
+    <!-- TEXTO PRINCIPAL -->
+    <div class="dimelo">
+        Di Di Di DIMELOOO
+    </div>
 
-    <img 
+    <!-- IMAGEN -->
+    <img
         id="logo"
         src="Logo_Mr_Jow__JPG__Imagen_-removebg-preview.png"
         alt="Logo Mr Jow"
     >
 
+    <!-- TEXTO DEBAJO DE LA IMAGEN -->
+    <div class="texto-click">
+        CLICK EN LA FOTO PARA VER EL ÚLTIMO LANZAMIENTO
+    </div>
+
+    <!-- REDES -->
     <div class="social-buttons">
         <a href="https://www.instagram.com/wilsoncarranza89" target="_blank" class="instagram">Instagram</a>
         <a href="https://www.tiktok.com/@mrjow89" target="_blank" class="tiktok">TikTok</a>
-        <a href="https://www.facebook.com/mrjow56oficial?locale=es_LA" target="_blank" class="facebook">Facebook</a>
+        <a href="https://www.facebook.com/mrjow56oficial" target="_blank" class="facebook">Facebook</a>
         <a href="https://www.youtube.com/@mrjow89" target="_blank" class="youtube">YouTube</a>
         <a href="https://kick.com/mrjow" target="_blank" class="kick">Kick</a>
         <a href="mailto:wilsoncarranza89@gmail.com" class="correo">Correo</a>
@@ -130,26 +137,25 @@
     <script>
         const logo = document.getElementById("logo");
         const audio = document.getElementById("bienvenida");
-
         const videoActual = "https://www.youtube.com/watch?v=s7fB92foy70";
 
-        // Rebote cada 2 segundos
+        // Rebote constante
         setInterval(() => {
             logo.classList.add("rebotar");
             setTimeout(() => logo.classList.remove("rebotar"), 600);
         }, 2000);
 
-        // Intento de bienvenida automática
+        // Intento de audio automático
         window.addEventListener("load", () => {
             audio.play().catch(() => {});
         });
 
-        // Primer click → sonido garantizado
+        // Garantizar audio al primer toque
         document.addEventListener("click", () => {
             if (audio.paused) audio.play();
         }, { once: true });
 
-        // Click en imagen → audio + video
+        // Click en la imagen
         logo.addEventListener("click", () => {
             audio.currentTime = 0;
             audio.play();
